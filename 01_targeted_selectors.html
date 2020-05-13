@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Targeted Selectors</title>
+  <style>
+    /* Descendent Selector
+      Applies to all elements within the stated element
+      This is the most general of CSS selector combinations, so the combinations specified below will
+      override this most-general level specifier */
+    div p {
+      background: #111;
+      color: #fff;
+    }
+
+    /* Child Selector 
+      This selector targets direct children of the element we specify. If we specify, for example 'div > p' then only direct children of the div will be selected, not every ancestor of the div, which is what would happen if we used the ancestor/descendent selector 'div p' */
+    div > p {
+      background: #333;
+      color: #fff;
+    }
+
+    /* General Sibling Selector 
+      This targets all siblings of the specified element, no matter if they proceed or precede it
+      Given they are on the same level of the specified element, they will be targeted */
+    div ~ p {
+      background: teal;
+      color: #333;
+    }
+
+    /* Adjacent Sibling Selector 
+      Will only target an element immediately proceeding the selected element, on its own level
+      Since we place this after the general sibling selector, this will override where applicable */
+    div + p {
+      background: chartreuse;
+      color: #333;
+    }
+
+    /* Attribute Selectors 
+      We can also target elements based on the attributes they have, and even on the value of these attributes */
+
+    /* Here we say: For every <a> tag with that has the 'target' attribute, do this */
+    a[target] {
+      background: orange;
+    }
+
+    /* As aforementioned, we can target elements based on the value that their attribute holds
+      Here we say, for every <a> element with a 'target' attribute of the value 'http://www.google.com'
+      Of course, because we have already had a selector above that targets this element, this selector will override it */
+    a[href="http://www.google.com"] {
+      background: purple;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    /* Here we can get a little more advanced by selected elements based on an element we don't
+      want selected. We could do this by doing: 
+          form > input[type="text"],
+          form > input[type="email"]
+      but what if there are many different types? We don't want to have to write them all out, especially when we can use a 'not' keyword to select them all together */
+    form > input:not([type="submit"]) {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <p>Before a div on the same level as it - not proceeding the div, but preceding it.</p>
+  <div>
+    <p>Immediately within a div - a child element.</p>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li><p>Within a div - a descendent but not child.</p></li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+    <p>Immediately within a div - a child element.</p>
+  </div>
+  <p>Immediately after a div, on the same level.</p>
+  <ul>
+    <li>1</li>
+    <li><p>After a div, within a list element - not inside a div.</p></li>
+    <li>3</li>
+  </ul>
+  <p>On the same level as a div - a few elements after it.</p>
+  <div></div>
+  <p>Another immediate sibling of a div</p>
+
+  <a href="#">Link 1</a>
+  <a href="#" target="_self">Link 2</a>
+  <a href="http://www.google.com" target="_blank">Google</a>
+
+  <br><br>
+
+  <form action="#.php">
+    <input type="text" name="name" id="name" placeholder="Name">
+    <input type="email" name="email" id="email" placeholder="Email Address">
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>

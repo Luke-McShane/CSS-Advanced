@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nth Child Selectors</title>
+  <style>
+    li {
+      list-style-type: none;
+      margin-bottom: 10px;
+    }
+    .list-div { display: flex; }
+    .list-div ul { flex: 1; }
+    /* We can select specific elements, or series of elements, using structured pseudo selectors */
+
+    /* Here we say to select the third list element for every parent
+      So, since we have two unordered lists, we can see that the third item for each ul is selected.*/
+    li:nth-child(3) {
+      background: red;
+    }
+
+    /* The 'n' is the multiple. So here we select every 4th element, starting from 0 */
+    li:nth-child(4n) {
+      background: blue;
+      color: #fff;
+    }
+
+    /* Here select every fourth child, offset by 1 */
+    li:nth-child(4n+1) {
+      background: indigo;
+      color: #ddd;
+    }
+
+    /* We can also specifiy which target type we want, to filter out other tags
+      For example, take the 'example' class below. If we were to use .example div:nth-child(2), we would hope that the second div tag would be selected. However, because this selector simply points to the second element, nothing would be selected, because the second element is a p tag
+      To counter this, we would use the 'nth-of-type()' selector, which would only looks for the specified type, and, like nth-child, searches on for siblings in that hierarchy */
+    .example div:nth-of-type(2) {
+      background: yellow;
+    }
+
+    /* We can even use keywords such as 'odd' and 'even' */
+    .example p:nth-of-type(odd) {
+      background: #ddd;
+    }
+
+    .example p:nth-of-type(even) {
+      background: #aaa;
+    }
+
+    /* There are other structural pseudo-selectors that fall into type-dependent (nth-of-type) and type-independent (nt-child) categories:
+        nth-last-child() - counts backwards from the passed argument, in the group of sibilings
+          So p:nth-last-child(1), would selet the last child; p:nth-last-child(2) would select the second to last child
+        first-child() - selects the first child in the group of siblings 
+        last-child() - selects the last child in the group of siblings
+        only-child() - selects the element if it is the only child of the parent 
+        
+        nth-last-of-type - counts backwards, only counting those of the type, from the specified       argument 
+        nth-first-child - selects the first of type from the group of siblings
+        nth-last-child - selects the last of type from the group of siblings
+        nth-only-child - selects the element given it is the only child of that type, from the group of siblings*/
+        
+    
+  </style>
+</head>
+<body>
+  <div class="list-div">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+      <li>11</li>
+      <li>12</li>
+      <li>13</li>
+      <li>14</li>
+      <li>15</li>
+      <li>16</li>
+      <li>17</li>
+      <li>18</li>
+      <li>19</li>
+      <li>20</li>
+    </ul>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+      <li>11</li>
+      <li>12</li>
+      <li>13</li>
+      <li>14</li>
+      <li>15</li>
+      <li>16</li>
+      <li>17</li>
+      <li>18</li>
+      <li>19</li>
+      <li>20</li>
+    </ul>
+  </div>
+  
+  <div class="example">
+    <p>This is a <em>paragraph</em>.</p>
+    <p>This is a <em>paragraph</em>.</p>
+    <p>This is a <em>paragraph</em>.</p>
+    <div>This is a <em>divider</em>.</div>
+    <div>This is a <em>divider</em>.</div>
+    <p>This is a <em>paragraph</em>.</p>
+    <p>This is a <em>paragraph</em>.</p>
+    <div>This is a <em>divider</em>.</div>
+    <p>This is a <em>paragraph</em>.</p>
+    <div>This is a <em>divider</em>.</div>
+  </div>
+</body>
+</html>
