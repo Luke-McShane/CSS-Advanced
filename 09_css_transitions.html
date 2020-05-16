@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Transitions</title>
+  <style>
+    :root {
+      --colour-primary: #333;
+      --colour-initial: cyan;
+      --colour-final: red;
+    }
+
+    body {
+      background: var(--colour-primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background: var(--colour-initial);
+
+      /* Here we define the transition attributes
+        First is the transition-property, which defines which properties of the element will have the transition applied to them
+        Next is the transition-duration, which defines how long it will take until the transition completes
+        The transition-timing-function defines the speed curve of the animation, similar to the animation-timing-function
+        Finally, the transition-delay defines how long until the transition begins
+        The shorthand is a combination of these 4 components: property, duration, timing-function, delay */
+      transition-property: background;
+      /* If we do not set a transition-duration, the transition will not have an effect, for the default is 0 seconds */
+      transition-duration: 2s;
+      transition-timing-function: ease-in-out;
+      transition-delay: 500ms;
+
+      /* We can set 'all' to state that all properties of the element will be affected */
+      transition: all 2s ease-in-out 500ms;
+
+      /* 
+        TRANSITIONAL PROPERTIES
+        - Properties that have an identifiable halfway point
+        - All properties below may be affected by transitions
+
+        background-color 
+        background-position 
+        border-color 
+        border-width 
+        border-spacing 
+        bottom 
+        color
+        font-size 
+        font-weight 
+        height left 
+        letter-spacing 
+        line-height 
+        margin 
+        max-height 
+        max-width 
+        min-height 
+        min-width 
+        opacity 
+        outline-color 
+        outline-offset 
+        outline-width 
+        padding right 
+        text-indent 
+        text-shadow 
+        top 
+        vertical-align 
+        visibility 
+        width 
+        word-spacing 
+        z-index */
+    }
+
+    /* Since we create a new state for the element, it will have a transition applied to it, as per above
+      The 'hover' is an action that creates a new state, meaning the element may have a transition */
+    .box:hover {
+      background: var(--colour-final);
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>

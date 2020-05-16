@@ -5,10 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Keyframes 2</title>
   <style>
-    
+    :root {
+      --colour-primary: #333;
+      --colour-initial: #f4f4f4;
+      --colour-stage-1: green;
+      --colour-stage-2: yellow;
+      --colour-stage-3: blue;
+      --colour-stage-4: red;
+    }
+
+    body {
+      background: var(--colour-primary);
+    }
+
+    .box {
+      animation: animate1 5s 3s forwards ease-in-out;
+      background: var(--colour-initial);
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 200px;
+      border-radius: 0 0 50% 0;
+    }
+
+    /* Here we split the animation up into 4 quarters
+      Each stage represents the percentage of completion for the animation
+      So, when the animation is 25% complete, the following state should be active for the element
+      The border-radius can be stated as such, whereby each number represents the border-radius for each corner, going from
+      top-left/top-right/bottom-right/bottom-left */
+    @keyframes animate1 {
+      25% {
+        top: 0;
+        left: 600px;
+        background: var(--colour-stage-1);
+        border-radius: 0 0 0 50%;
+      }
+
+      50% {
+        top: 600px;
+        left: 600px;
+        background: var(--colour-stage-2);
+        border-radius: 50% 0 0 0;
+      }
+
+      75% {
+        top: 600px;
+        left: 0;
+        background: var(--colour-stage-3);
+        border-radius: 0 50% 0 0;
+      }
+
+      100% {
+        top: 0;
+        left: 0;
+        background: var(--colour-stage-4);
+        border-radius: 0 0 50% 0;
+      }
+    }
   </style>
 </head>
 <body>
-  
+  <div class="box"></div>
 </body>
 </html>
