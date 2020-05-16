@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Shadows</title>
+  <style>
+    .container {
+      display: flex;
+      padding: 1rem;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .box {
+      background: coral;
+      text-align: center;
+      padding: 1rem;
+      color: white;
+      margin: 1rem;
+
+      /* Box Shadows */
+
+      /* offset-x | offset-y | colour */
+      box-shadow: 5px 5px teal;
+
+      /* offset-x | offset-y | blur-radius | colour */
+      /* The blue radius defines how much of the shadow is blurred. The bigger the value, the more the shadow grows and becomes lighter */
+      box-shadow: 10px 10px 50px teal;
+
+      /* offset-x | offset-y | blur-radius | spread-radius | colour */
+      /* We can also set the spread-radius, which defines how much the shadow should grow or shrink. Negative values will cause it to shrink. We can also set
+        rgba values for the colour */
+      box-shadow: 5px 5px 5px 25px rgba(0, 0, 0, 0.3);
+
+      /* We can have multiple shadows, separated by commas */
+      box-shadow: 5px 5px teal, -3px -3px olive;
+
+      /* And we can inset the shadow, making it appear inside the element */
+      box-shadow: inset 5px 5px olive;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box">
+      <h3>Box Shadow</h3>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi, ea.</p>
+    </div>
+    <div class="box">
+      <h3>Box Shadow</h3>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi, ea.</p>
+    </div>
+    <div class="box">
+      <h3>Box Shadow</h3>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi, ea.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Before and After Pseudo Selectors</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    blockquote {
+      font-size: 1.5rem;
+    }
+
+    /* Here is one potential use of the '::after' selector. This is a     pseudo-element selector, which is denoted by the double colons
+      A pseudo-class selector is denoted by the single colon
+      
+    Here we are saying that, for important fields (those that have the is-required class) add a red asterisk after the element's content
+    The content is not added directly after the element, but is rather added into the element, but after the content already present within. The opposite is the case for the '::before' pseudo-element selector */
+    .is-required::after {
+      content: '*';
+      color: red;
+      padding-left: 2px;
+    }
+
+    /* Don't try and put pseudo-element selectors on images, because they won't work. Images are 'replaced' elements, meaning their content is the URL, and they have no content that the pseudo-element selector can grab  
+    You can, however, insert imgs before and after other elements, by including the URL in the content */
+    blockquote::before {
+      content: open-quote;
+      font-size: 2.5rem;
+      color: #333;      
+    }
+
+    blockquote::after {
+      content: close-quote;
+      font-size: 2.5rem;
+      color: #333;      
+    }
+
+    /* Something more complex is taking the content of an attribute within the selected element, and having it display either before or after. We do this below by selecting that element that possesses the desired attribute, and then we set the attribute's content as the value for 'content', and then style it according to our desires */
+
+    /* So here we are setting the data-tool-tip content to be the content for this after pseudo-element selector, and we are styling it so it looks like a pop-up. We then set a transform so, by default, it is scaled to 0 (is invisible), and then we set its on-hover to make it appear, and set a transition period so it appears and reappears nicely */
+    a[data-tool-tip]::after {
+      content: attr(data-tool-tip);
+      position: absolute;
+      bottom: 55%;
+      background: #333;
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px 30px;
+      transform: scale(0);
+      transition: transform ease-out 250ms;
+    }
+
+    a[data-tool-tip]:hover::after {
+      transform: scale(1);
+    }
+  </style>
+</head>
+<body>
+  <!-- <form action="#">
+    <label class="is-required" for="name">Name</label>
+    <input type="text" name="name" id="name">
+  </form> -->
+
+  <main>
+    <div class="container">
+      <blockquote>
+        Here, let's say, is a <a data-tool-tip="This is a nice quote, don't ya think?">quote</a>. So.. we can use before and after selectors to add things before and after text, just like I am doing here.
+      </blockquote>
+  </div>
+  </main>
+</body>
+</html>

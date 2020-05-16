@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyframes 1</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      background: #333;
+    }
+
+    /* Animations work on any attribute that has a mid-point. So, for example, let's take the opacity property. If we set a new opacity to
+      0.2, and it's currently set to 1, then there is a mind-point between these two values (0.6), meaning there is an opportunity to transition between values */
+    .box {
+      background: white;
+      width: 200px;
+      height: 200px;
+      top: 0;
+      position: relative;
+
+      /* animation-name specifies the name of the animation for this element(s), and is what will be used to reference it in the corresponding @keyframe */
+      animation-name: animate1;
+
+      /* Specifies for how long the animation should last before one cycle completes */
+      animation-duration: 2s;
+
+      /* Specifies how many times the animation will repeat */
+      animation-iteration-count: 2;
+
+      /* Specifies a style for the element when the animation is not playing (before the animation begins, when it finishes, or both) 
+        'forwards' takes the styling in the last keyframe and applies it, keep it in its final position 
+
+        'backwards' takes the styling in the first keyframe and applies it, meaning that, if the initial styling is different to the 'from' definition, then
+        whatever is in 'from' will take precedence. So, if we have an img starting at top: 0 but it's 'from' states that it begins at top: 100 then, rather
+        than the img popping to top: 100 when the animation starts, the img will instead begin at this point automatically
+
+        'both' applies both 'forwards' and 'backwards'. If we jut had backwards, for example then, after the animation finishes, the img will pop back to the
+        starting position, but, when applying 'both', the img will retain its final styling */
+      animation-fill-mode: forwards;
+
+      /* Specifies the delay until the animation begins. Can be in seconds (1s) or milliseconds (250ms) */
+      animation-delay: 1s;
+
+      /* Specifies the direction in which the animation should be played. Can be either forwards (normal), backwards (reverse), or it can alternate between
+        the two directions, and we can reverse this alternation (so it starts from forwards or backwards) */
+      animation-direction: alternate;
+
+      /* Specifies the speed curve of the animation
+        ease-in causes the animation to start slowly, and finish at full speed
+        ease-out: start fast, end slow
+        ease-in-out: start slow, speed up, then slow down
+        ease: same as ease-in-out, but start slightly faster
+        linear: no easing   */
+      animation-timing-function: ease-in;
+
+      /* This is the shorthand notation
+        In order, the values are animation:
+          -name
+          -duration
+          -timing-function
+          -delay
+          -iteration-count
+          -direction
+          -fill-mode
+          -play-state */
+      /* animation: animate1 2s ease-in 1s infinite normal forwards running; */
+    }
+
+    /* The @keyframes keyword is used to set out the rules that will specifiy what occurs in the animation
+      We can use the keywords 'from' and 'to', or specify percentages. If we use 'from' and 'to', then they will represent 0% and 100% respectively
+      If using percentages, we can change the styling multiple times within a single animation */
+    @keyframes animate1 {
+      /* The 'from' section here is redundant, for it is the same as the starting styling - but it has been included for demonstration purposes */
+      from {
+        top: 0;
+      }
+
+      to {
+        width: 600px;
+        /* height: 100px; */
+        background: coral;
+        top: 400px;
+        /* left: 600px; */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>
